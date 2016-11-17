@@ -8,6 +8,25 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.05*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.39*"/>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.39*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10,29,0,0" TextWrapping="Wrap" Text="App Name" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontStyle="Italic" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <Button x:Name="Create_Button" Content="Create New entry" Foreground="White" Background="#616161" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Red" BorderThickness="4" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Width="150" Height="100" Click="Create_Button_Click"/>
+            <Button x:Name="Search_Button" Content="Update/Search" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderBrush="Red" BorderThickness="4" Grid.Row="3" Grid.Column="1" Height="100" Click="Search_Button_Click"/>
+            <Button x:Name="Logs_Button" Content="Logs" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderBrush="Red" BorderThickness="4" Grid.Row="3" Grid.Column="3" Height="100" Click="Logs_Button_Click"/>
+        </Grid>
     </Grid>
 </Page>
