@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Stock_Management_UWP
 {
-    class ProductClass
+    public class ProductClass
     {
         public string Name { get; set; }
 

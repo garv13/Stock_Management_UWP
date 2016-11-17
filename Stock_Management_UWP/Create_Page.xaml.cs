@@ -27,40 +27,49 @@ namespace Stock_Management_UWP
     {
         public Create_Page()
         {
+            List<string> lol = new List<string>();
+            lol.Add("lol");
             this.InitializeComponent();
+            matBox.ItemsSource = lol;
         }
 
        
         
         private async void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (Product_Name_Box.Text == " ")
+            int lol;   
+            if (Product_Name_Box.Text == "")
             {
                 await (new MessageDialog("Enter Valid Name")).ShowAsync();
                 return;
             }
 
-            if (Product_Quantity_Box.Text == " ")
+            if (Product_Quantity_Box.Text == "" && !int.TryParse(Product_Quantity_Box.Text, out lol))
             {
                 await (new MessageDialog("Enter Valid Quantity")).ShowAsync();
                 return;
             }
 
-            if (Product_Color_Box.Text == " ")
+            if (Product_Color_Box.Text == "")
             {
                 await (new MessageDialog("Enter Valid Color")).ShowAsync();
                 return;
             }
+           
+
+
             try
             {
                 ProductClass p = new ProductClass();
                 p.Name = Product_Name_Box.Text;
                 p.Color = Product_Color_Box.Text;
                 p.Quantity = Product_Quantity_Box.Text;
-                p.Material = Product_Material_Box.Text;
+                var material = matBox.SelectedItem as ComboBoxItem;
+                p.Material = material.Content as string;
+               
                 p.Source = Product_Source_Box.Text;
-                p.Quality = Product_Qual_Box.Text;
+                var Quality =comboBox.SelectedItem as ComboBoxItem;
+                p.Quality = Quality.Content as string;
               
                 
                 
