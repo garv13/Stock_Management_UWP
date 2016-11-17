@@ -29,6 +29,15 @@
         <TextBox x:Name="Product_Color_Box" Grid.Column="1" Grid.Row="4" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
         <TextBox x:Name="Product_Quantity_Box" Grid.Column="1" Grid.Row="5" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
         <TextBox x:Name="Product_Source_Box" Grid.Column="1" Grid.Row="6" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1"  TextAlignment="Justify" Foreground="Black" Text="Material"/>
+        <TextBlock Grid.Column="0" Grid.Row="2"  TextAlignment="Justify"  Foreground="Black" Text="Quality"/>
+        <TextBlock Grid.Column="0" Grid.Row="3"  TextAlignment="Justify"  Foreground="Black" Text="Name"/>
+        <TextBlock Grid.Column="0" Grid.Row="4"  TextAlignment="Justify"  Foreground="Black" Text="Color"/>
+        <TextBlock  Grid.Column="0" Grid.Row="5" TextAlignment="Justify"  Foreground="Black" Text="Quantity"/>
+        <TextBlock Grid.Column="0" Grid.Row="6"  TextAlignment="Justify"  Foreground="Black" Text="Source"/>
+
+
     </Grid>
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandBar1" Visibility="Visible">

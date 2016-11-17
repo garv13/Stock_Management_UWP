@@ -25,6 +25,7 @@ namespace Stock_Management_UWP
         public MainPage()
         {
             this.InitializeComponent();
+            mahSql.load();
         }
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)

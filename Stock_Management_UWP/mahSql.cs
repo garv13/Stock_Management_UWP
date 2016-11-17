@@ -8,17 +8,17 @@ namespace Stock_Management_UWP
 {
     class mahSql
     {
-        public void add(ProductClass a) {
+        public static void add(ProductClass a) {
 
 
         }
-        public void delete(ProductClass a) { }
-        public void update(ProductClass a) { }
-        public List<ProductClass> query(ProductClass p) {
+        public static void delete(ProductClass a) { }
+        public static void update(ProductClass a) { }
+        public static List<ProductClass> query(ProductClass p) {
 
             return App.Table;//change this
         }
-        public void load() { }
+        public static void load() { }
 
 
     }
