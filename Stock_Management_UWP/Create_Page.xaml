@@ -8,18 +8,27 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.55*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="Product_Name_Box" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Height="100" Foreground="Black"/>
-        <TextBox x:Name="Product_Quan_Box" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify" Height="100" Foreground="Black"/>
-        <TextBox x:Name="Product_Color_Box" Grid.Row="3" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify" Height="100" Foreground="Black"/>
-        <Button x:Name="filePicker_Button" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Select Image" Click="filePicker_Button_Click"/>
+        <TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>
+        <TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="3" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Color_Box" Grid.Column="1" Grid.Row="4" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Quantity_Box" Grid.Column="1" Grid.Row="5" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Source_Box" Grid.Column="1" Grid.Row="6" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandBar1" Visibility="Visible">

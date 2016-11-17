@@ -31,6 +31,7 @@ namespace Stock_Management_UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+        public static List<ProductClass> Table { get; set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
