@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,32 @@ namespace Stock_Management_UWP
 {
     class mahSql
     {
-        public static void add(ProductClass a) {
-            App.Table.Add(a);
+        private static IMobileServiceTable<ProductClass> Table = App.MobileService.GetTable<ProductClass>();
+        private MobileServiceCollection<ProductClass, ProductClass> items;
+        public static async void add(ProductClass a) {
+            try
+            {
+                a = crypt.encrypt(a);
+                await App.MobileService.GetTable<ProductClass>().InsertAsync(a);
+                a = crypt.decrypt(a);
+                App.Table.Add(a);
+            }
+            catch
+            {
 
+            }
         }
-        public static void delete(ProductClass a) {
+        public async static void delete(ProductClass a) {
+            a = crypt.encrypt(a);
+            await Table.DeleteAsync(a);
+            a = crypt.decrypt(a);
             App.Table.Remove(a);
         }
-        public static void update(ProductClass a) {
+        public async static void update(ProductClass a) {
+            a = crypt.encrypt(a);
+            await Table.UpdateAsync(a);
+            a = crypt.decrypt(a);
+
             for (int i = 0; i < App.Table.Count; i++)
             {
                 if (App.Table[i].Id == a.Id)
