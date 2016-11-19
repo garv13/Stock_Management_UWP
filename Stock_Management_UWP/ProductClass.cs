@@ -17,6 +17,7 @@ namespace Stock_Management_UWP
 
         public string Quality { get; set; }
 
+        public string Id { get; set; }
 
         public string Source { get; set; }
         public string Material { get; set; }
