@@ -10,7 +10,7 @@ namespace Stock_Management_UWP
     class mahSql
     {
         private static IMobileServiceTable<ProductClass> Table = App.MobileService.GetTable<ProductClass>();
-        private MobileServiceCollection<ProductClass, ProductClass> items;
+        private static MobileServiceCollection<ProductClass, ProductClass> items;
         public static async void add(ProductClass a) {
             try
             {
@@ -81,11 +81,31 @@ namespace Stock_Management_UWP
                     temp.Add(l);
                 }
             }
-
+            if (p.Material != "")
+            {
+                var a = temp.Where(ProductClass => ProductClass.Material == p.Material);
+                temp.Clear();
+                foreach (ProductClass l in a)
+                {
+                    temp.Add(l);
+                }
+            }
             return temp;
         }
-        public static void load() {
-
+        public async static void load() {
+            int i = 0;
+            while (true)
+            {
+                items = await Table.Skip(i).Take(20).ToCollectionAsync();
+                App.Table.Clear();
+                if (items.Count == 0)
+                { break;
+                }
+                foreach (ProductClass p in items)
+                {
+                    App.Table.Add(p);
+                }
+            }
         }
       
     }
