@@ -10,6 +10,7 @@ namespace Stock_Management_UWP
     {
         public static ProductClass encrypt(ProductClass a)
         {
+            //encrypt everythin except the id
             return a;
         }
         public static ProductClass decrypt(ProductClass a)
@@ -22,6 +23,8 @@ namespace Stock_Management_UWP
         }
         public static Logs encryptLog(Logs a)
         {
+            //only escrypt contect thats it
+
             return a;
         }
     }
