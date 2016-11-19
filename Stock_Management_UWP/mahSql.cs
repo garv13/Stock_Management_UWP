@@ -103,7 +103,8 @@ namespace Stock_Management_UWP
                 }
                 foreach (ProductClass p in items)
                 {
-                    App.Table.Add(p);
+                    ProductClass q = crypt.decrypt(p);
+                    App.Table.Add(q);
                 }
             }
         }
