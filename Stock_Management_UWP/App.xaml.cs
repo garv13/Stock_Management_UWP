@@ -35,7 +35,7 @@ namespace Stock_Management_UWP
         public static List<ProductClass> Table { get; set; }
         public static MobileServiceClient MobileService =
             new MobileServiceClient(
-            "https://gploltest.azurewebsites.net"
+           keys.url
         );
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

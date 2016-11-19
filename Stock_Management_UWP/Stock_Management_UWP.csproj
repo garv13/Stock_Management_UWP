@@ -99,6 +99,7 @@
     <Compile Include="Create_Page.xaml.cs">
       <DependentUpon>Create_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="keys.cs" />
     <Compile Include="Logs_Page.xaml.cs">
       <DependentUpon>Logs_Page.xaml</DependentUpon>
     </Compile>
