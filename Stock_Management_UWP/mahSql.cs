@@ -65,7 +65,9 @@ namespace Stock_Management_UWP
 
             return temp;
         }
-        public static void load() { }
+        public static void load() {
+
+        }
       
     }
 }
