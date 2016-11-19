@@ -16,5 +16,13 @@ namespace Stock_Management_UWP
         {
             return a;
         }
+        public static Logs decryptLog(Logs a)
+        {
+            return a;
+        }
+        public static Logs encryptLog(Logs a)
+        {
+            return a;
+        }
     }
 }
