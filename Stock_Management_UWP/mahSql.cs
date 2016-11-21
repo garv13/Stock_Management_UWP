@@ -92,12 +92,13 @@ namespace Stock_Management_UWP
             }
             return temp;
         }
-        public async static void load() {
+        public async static Task load() {
             int i = 0;
+            App.Table.Clear();
             while (true)
             {
-                items = await Table.Skip(i).Take(20).ToCollectionAsync();
-                App.Table.Clear();
+                items = await Table.Skip(20*i).Take(20).ToCollectionAsync();
+                i++;
                 if (items.Count == 0)
                 { break;
                 }

@@ -17,35 +17,41 @@
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
+
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.55*"/>
         </Grid.RowDefinitions>
-        <ComboBox x:Name="matBox" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+        <ComboBox SelectionChanged="matBox_SelectionChanged" x:Name="matBox" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
             
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
-        <ComboBox x:Name="comboBox" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
-            <ComboBoxItem>I</ComboBoxItem>
-            <ComboBoxItem IsSelected="True">II</ComboBoxItem>
+        <ComboBox x:Name="comboBox" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <ComboBoxItem IsSelected="True">I</ComboBoxItem>
+            <ComboBoxItem >II</ComboBoxItem>
             <ComboBoxItem>Sup</ComboBoxItem>
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>-->
-        <TextBox x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="3" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
-        <TextBox x:Name="Product_Color_Box" Grid.Column="1" Grid.Row="4" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
-        <TextBox x:Name="Product_Quantity_Box" Grid.Column="1" Grid.Row="5" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>
-        <TextBox x:Name="Product_Source_Box" Grid.Column="1" Grid.Row="6" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox Visibility="Collapsed" x:Name="Product_Mat_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" PlaceholderText="Enter New Material" BorderThickness="4"  TextAlignment="Justify"  Foreground="Black"/>
+
+        <TextBox x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="4" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Color_Box" Grid.Column="1" Grid.Row="5" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Quantity_Box" Grid.Column="1" Grid.Row="6" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox x:Name="Product_Source_Box" Grid.Column="1" Grid.Row="7" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
 
         <TextBlock Grid.Column="0" Grid.Row="1"  TextAlignment="Justify" Foreground="Black" Text="Material"/>
-        <TextBlock Grid.Column="0" Grid.Row="2"  TextAlignment="Justify"  Foreground="Black" Text="Quality"/>
-        <TextBlock Grid.Column="0" Grid.Row="3"  TextAlignment="Justify"  Foreground="Black" Text="Name"/>
-        <TextBlock Grid.Column="0" Grid.Row="4"  TextAlignment="Justify"  Foreground="Black" Text="Color"/>
-        <TextBlock  Grid.Column="0" Grid.Row="5" TextAlignment="Justify"  Foreground="Black" Text="Quantity"/>
-        <TextBlock Grid.Column="0" Grid.Row="6"  TextAlignment="Justify"  Foreground="Black" Text="Source"/>
+        <TextBlock   Grid.Column="0" Grid.Row="2"  TextAlignment="Justify" Foreground="Black" Text="Other"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="3"  TextAlignment="Justify"  Foreground="Black" Text="Quality"/>
+        <TextBlock Grid.Column="0" Grid.Row="4"  TextAlignment="Justify"  Foreground="Black" Text="Name"/>
+        <TextBlock Grid.Column="0" Grid.Row="5"  TextAlignment="Justify"  Foreground="Black" Text="Color"/>
+        <TextBlock  Grid.Column="0" Grid.Row="6" TextAlignment="Justify"  Foreground="Black" Text="Quantity"/>
+        <TextBlock Grid.Column="0" Grid.Row="7"  TextAlignment="Justify"  Foreground="Black" Text="Source"/>
 
 
     </Grid>

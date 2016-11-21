@@ -24,16 +24,23 @@ namespace Stock_Management_UWP
     {
         public MainPage()
         {
+            App.Table = new List<ProductClass>();
             ProductClass a = new ProductClass();
-            a.Color = "Blue";
-            a.Material = "PP";
+            a.Color = "Red";
+            a.Material = "PPCP";
             a.Name = "lol";
             a.Quality = "II";
             a.Quantity = "25";
             a.Source = "lol";
             App.MobileService.GetTable<ProductClass>().InsertAsync(a);
             this.InitializeComponent();
-            mahSql.load();
+            Loaded += MainPage_Loaded;
+           
+        }
+
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await mahSql.load(); 
         }
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)

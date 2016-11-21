@@ -24,27 +24,39 @@ namespace Stock_Management_UWP
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Create_Page : Page
-    {
+    { 
+
+        public List<string> lol;
         public Create_Page()
         {
-            List<string> lol = new List<string>();
-            lol.Add("lol");
+                lol = new List<string>();
+            Loaded += Create_Page_Loaded;
+           
             this.InitializeComponent();
+            
+        }
+
+        private async void Create_Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var a = App.Table.Select(ProductClass => ProductClass.Material).Distinct();
+            foreach (string s in a)
+            {
+                lol.Add(s);
+            }
+            lol.Add("Other");
             matBox.ItemsSource = lol;
         }
 
-       
-        
         private async void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            int lol;   
+            int lol2;   
             if (Product_Name_Box.Text == "")
             {
                 await (new MessageDialog("Enter Valid Name")).ShowAsync();
                 return;
             }
 
-            if (Product_Quantity_Box.Text == "" && !int.TryParse(Product_Quantity_Box.Text, out lol))
+            if (Product_Quantity_Box.Text == "" && !int.TryParse(Product_Quantity_Box.Text, out lol2))
             {
                 await (new MessageDialog("Enter Valid Quantity")).ShowAsync();
                 return;
@@ -64,14 +76,29 @@ namespace Stock_Management_UWP
                 p.Name = Product_Name_Box.Text;
                 p.Color = Product_Color_Box.Text;
                 p.Quantity = Product_Quantity_Box.Text;
-                var material = matBox.SelectedItem as ComboBoxItem;
-                p.Material = material.Content as string;
+                var Quality = comboBox.SelectedItem as ComboBoxItem;
+                p.Quality = Quality.Content as string;
+
+                var material = matBox.SelectedItem as string;
+                string mat = material;
+                if (mat == "Other")
+                {
+                    mat = Product_Mat_Box.Text;
+                    if (lol.Contains(mat))
+                    {
+
+                    }
+                }
+                p.Material = mat;
                
                 p.Source = Product_Source_Box.Text;
-                var Quality =comboBox.SelectedItem as ComboBoxItem;
-                p.Quality = Quality.Content as string;
               
-                
+                mahSql.add(p);
+                Logs l = new Logs();
+                l.ProductId = p.Id;
+                l.DateTime = DateTime.Now.ToString();
+                l.Content = "Added new product " + p.Name + ". " + p.Quantity + "Bags";
+                Logs.createLog(l);
                 
                
 
@@ -82,6 +109,17 @@ namespace Stock_Management_UWP
             {
                 await (new MessageDialog("Record Not Added")).ShowAsync();
             }
+        }
+
+        private void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var a = sender as ComboBox;
+            string Quality = a.SelectedItem as string;
+            //todo something here
+            if(Quality == "Other")
+            { Product_Mat_Box.Visibility = Visibility.Visible; }
+            else
+                Product_Mat_Box.Visibility = Visibility.Collapsed;
         }
     }
 }

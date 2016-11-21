@@ -35,7 +35,7 @@ namespace Stock_Management_UWP
         public static List<ProductClass> Table { get; set; }
         public static MobileServiceClient MobileService =
             new MobileServiceClient(
-           keys.url
+           keys.url,new AppKeyHandler()
         );
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
