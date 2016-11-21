@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +25,12 @@ namespace Stock_Management_UWP
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class Create_Page : Page
-    { 
+    {
 
         public List<string> lol;
+            private static IMobileServiceTable<ProductClass> Table = App.MobileService.GetTable<ProductClass>();
+        public static MobileServiceCollection<string, string> items;
+        
         public Create_Page()
         {
                 lol = new List<string>();
@@ -38,11 +42,9 @@ namespace Stock_Management_UWP
 
         private async void Create_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var a = App.Table.Select(ProductClass => ProductClass.Material).Distinct();
-            foreach (string s in a)
-            {
-                lol.Add(s);
-            }
+            items = await Table.Select(ProductClass => ProductClass.Material).ToCollectionAsync();
+            lol = items.Distinct().ToList<string>();
+            
             lol.Add("Other");
             matBox.ItemsSource = lol;
         }
@@ -73,9 +75,9 @@ namespace Stock_Management_UWP
             try
             {
                 ProductClass p = new ProductClass();
-                p.Name = Product_Name_Box.Text;
-                p.Color = Product_Color_Box.Text;
-                p.Quantity = Product_Quantity_Box.Text;
+                p.Name = Product_Name_Box.Text.ToUpper();
+                p.Color = Product_Color_Box.Text.ToUpper();
+                p.Quantity = Product_Quantity_Box.Text.ToUpper();
                 var Quality = comboBox.SelectedItem as ComboBoxItem;
                 p.Quality = Quality.Content as string;
 
@@ -83,20 +85,20 @@ namespace Stock_Management_UWP
                 string mat = material;
                 if (mat == "Other")
                 {
-                    mat = Product_Mat_Box.Text;
+                    mat = Product_Mat_Box.Text.ToUpper();
                     if (lol.Contains(mat))
                     {
-
+                        await (new MessageDialog("Material Already exists. Kindly select from drop down menu")).ShowAsync();
                     }
                 }
                 p.Material = mat;
                
-                p.Source = Product_Source_Box.Text;
-              
-                mahSql.add(p);
+                p.Source = Product_Source_Box.Text.ToUpper();
+
+                await App.MobileService.GetTable<ProductClass>().InsertAsync(p);
                 Logs l = new Logs();
                 l.ProductId = p.Id;
-                l.DateTime = DateTime.Now.ToString();
+               
                 l.Content = "Added new product " + p.Name + ". " + p.Quantity + "Bags";
                 Logs.createLog(l);
                 

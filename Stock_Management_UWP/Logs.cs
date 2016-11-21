@@ -9,8 +9,7 @@ namespace Stock_Management_UWP
 {
     class Logs
     {
-        private static IMobileServiceTable<Logs> Table = App.MobileService.GetTable<Logs>();
-        private static MobileServiceCollection<Logs, Logs> items;
+     
         public static List<Logs> log = new List<Logs>();
         public string Id { get; set; }
         public string ProductId { get; set; }
@@ -20,21 +19,11 @@ namespace Stock_Management_UWP
         public static void createLog(Logs a)
         {
             a= crypt.encryptLog(a);
+            a.DateTime = System.DateTime.Now.ToString();
             App.MobileService.GetTable<Logs>().InsertAsync(a);
 
         }
-        public async static void load()
-        {
-           
-            items = await Table.ToCollectionAsync();
-            log.Clear();
-            foreach (Logs p in items)
-            {
-                Logs q = crypt.decryptLog(p);
-                log.Add(q);
-            }
-            
-        }
+       
 
 
     }

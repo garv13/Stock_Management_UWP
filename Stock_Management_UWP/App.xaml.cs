@@ -32,7 +32,7 @@ namespace Stock_Management_UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-        public static List<ProductClass> Table { get; set; }
+       
         public static MobileServiceClient MobileService =
             new MobileServiceClient(
            keys.url,new AppKeyHandler()
