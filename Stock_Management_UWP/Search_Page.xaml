@@ -59,11 +59,12 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox
+           LostFocus="Product_Name_Box_LostFocus"
             Margin="10,0,0,0" Header="Choose Material"  x:Name="matBox" Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
-        <ComboBox  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+        <ComboBox LostFocus="Product_Name_Box_LostFocus"  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
             <ComboBoxItem IsSelected="True">I</ComboBoxItem>
             <ComboBoxItem >II</ComboBoxItem>
             <ComboBoxItem>Sup</ComboBoxItem>
@@ -72,12 +73,12 @@
         <!--<TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>-->
 
 
-        <TextBox  Margin="10,0,0,0" Header="Enter Name" x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
-        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Margin="10,0,0,0" x:Name="matBox2" Header="Choose Color"  Grid.Column="2" Grid.Row="1" BorderBrush="#616161" BorderThickness="4"  Foreground="Black"/>
+        <TextBox LostFocus="Product_Name_Box_LostFocus"  Margin="10,0,0,0" Header="Enter Name" x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <ComboBox LostFocus="Product_Name_Box_LostFocus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Margin="10,0,0,0" x:Name="matBox2" Header="Choose Color"  Grid.Column="2" Grid.Row="1" BorderBrush="#616161" BorderThickness="4"  Foreground="Black"/>
 
-        <TextBox  Margin="10,0,0,0" Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
 
-        <TextBlock  Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBlock LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
 
         <Grid Grid.Row="2" Grid.ColumnSpan="6">
                 <ListView   

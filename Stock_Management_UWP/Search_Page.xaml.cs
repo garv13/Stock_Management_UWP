@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -43,12 +44,14 @@ namespace Stock_Management_UWP
 
             lol.Add("All");
             matBox.ItemsSource = lol;
+            matBox.SelectedIndex = 0;
 
             items2 = await Table.Select(ProductClass => ProductClass.Color).ToCollectionAsync();
             lol = items2.Distinct().ToList<string>();
 
             lol.Add("All");
             matBox2.ItemsSource = lol;
+            matBox2.SelectedIndex = 0;
 
 
 
@@ -58,18 +61,32 @@ namespace Stock_Management_UWP
         {
 
         }
-        private async void loadTable()
+        private async Task loadTable()
         {
             var Quality = comboBox.SelectedItem as ComboBoxItem;
             string Qual = Quality.Content as string;
             var material = matBox.SelectedItem as string;
             var color = matBox2.SelectedItem as string;
-            items = await Table.Where(ProductClass => ProductClass.Name.Contains(Product_Name_Box.Text.ToUpper()) && 
-            ProductClass.Source.Contains(Product_Source_Box.Text.ToUpper()) && 
-            ProductClass.Color.Contains(Product_Name_Box.Text) &&
-            ProductClass.Name.Contains(Product_Name_Box.Text) &&
-            ProductClass.Name.Contains(Product_Name_Box.Text)  ).ToCollectionAsync();
+            
+
+            items = await Table.Where(ProductClass =>
+            Product_Name_Box.Text != "" ? ProductClass.Name.Contains(Product_Name_Box.Text.ToUpper()) : true &&
+            ProductClass.Material==Qual && 
+            material!="All"?ProductClass.Material.Contains(material):true &&
+            color!= "All" ? ProductClass.Color.Contains(color) : true &&
+            Product_Source_Box.Text != "" ? ProductClass.Source.Contains(Product_Source_Box.Text.ToUpper()) : true).ToCollectionAsync();
+
             event1.ItemsSource = items;
+        }
+
+        private async void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await loadTable();
+        }
+
+        private async void Product_Name_Box_LostFocus(object sender, RoutedEventArgs e)
+        {
+            await loadTable();
         }
     }
 }
