@@ -99,7 +99,7 @@ namespace Stock_Management_UWP
                 Logs l = new Logs();
                 l.ProductId = p.Id;
                
-                l.Content = "Added new product " + p.Name + ". " + p.Quantity + "Bags";
+                l.Content = "Added new product " + p.Name + ". " + p.Quantity + " Bags";
                 Logs.createLog(l);
                 
                
