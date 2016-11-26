@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Page.Resources>
         <DataTemplate x:Key="Standard3100x260ItemTemplate" ScrollViewer.VerticalScrollMode="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <Grid Margin="10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Height="110" Width="400" Tapped="Grid_Tapped">
+            <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"  Tapped="Grid_Tapped">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width ="0.2*"/>
@@ -19,24 +20,24 @@
                     <ColumnDefinition Width ="0.2*"/>
 
                 </Grid.ColumnDefinitions>
-                
-                <Border Background="#253375"   Grid.Column="0">
-                    <TextBlock Text="{Binding Quality}"  FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+
+                <Border Background="#253375" Grid.Column="0">
+                    <TextBlock Text="{Binding Quality}"  FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
-                <Border Background="#253375"   Grid.Column="1">
-                    <TextBlock  Text="{Binding Name}" FontSize="15" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+                <Border Background="#253375"  Margin="10,0,0,0"  Grid.Column="1">
+                    <TextBlock  Text="{Binding Name}" FontSize="15" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
                 </Border>
-                <Border Background="#253375"    Grid.Column="2">
-                    <TextBlock Text="{Binding Color}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+                <Border Background="#253375" Margin="10,0,0,0"   Grid.Column="2">
+                    <TextBlock Text="{Binding Color}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
-                <Border Background="#253375"    Grid.Column="3">
-                    <TextBlock Text="{Binding Material}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+                <Border Background="#253375" Margin="10,0,0,0"   Grid.Column="3">
+                    <TextBlock Text="{Binding Material}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
-                <Border Background="#253375"    Grid.Column="4">
-                    <TextBlock  Text="{Binding Source}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+                <Border Background="#253375"  Margin="10,0,0,0"  Grid.Column="4">
+                    <TextBlock  Text="{Binding Source}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
-                <Border Background="#253375"    Grid.Column="5">
-                    <TextBlock  Text="{Binding Quantity}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0"/>
+                <Border Background="#253375"  Margin="10,0,0,0"  Grid.Column="5">
+                    <TextBlock  Text="{Binding Quantity}" FontSize="15" Foreground="White" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
             </Grid>
         </DataTemplate> 
@@ -57,12 +58,12 @@
 
         </Grid.ColumnDefinitions>
 
-        <ComboBox Header="Choose Material" SelectionChanged="matBox_SelectionChanged" x:Name="matBox" Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
-
+        <ComboBox
+            Margin="10,0,0,0" Header="Choose Material"  x:Name="matBox" Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
-        <ComboBox Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+        <ComboBox  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
             <ComboBoxItem IsSelected="True">I</ComboBoxItem>
             <ComboBoxItem >II</ComboBoxItem>
             <ComboBoxItem>Sup</ComboBoxItem>
@@ -71,15 +72,16 @@
         <!--<TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>-->
 
 
-        <TextBox Header="Enter Name" x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
-        <TextBox Header="Choose Color" x:Name="Product_Color_Box" Grid.Column="2" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Color of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox  Margin="10,0,0,0" Header="Enter Name" x:Name="Product_Name_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Margin="10,0,0,0" x:Name="matBox2" Header="Choose Color"  Grid.Column="2" Grid.Row="1" BorderBrush="#616161" BorderThickness="4"  Foreground="Black"/>
 
-        <TextBox Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBox  Margin="10,0,0,0" Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
 
-        <TextBlock Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBlock  Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
 
-        <Grid Grid.Row="2" Margin="30" Grid.ColumnSpan="5">
-                <GridView                    
+        <Grid Grid.Row="2" Grid.ColumnSpan="6">
+                <ListView   
+                     HorizontalContentAlignment="Stretch"
                         HorizontalAlignment="Stretch"
                         x:Name="event1"
                         VerticalAlignment="Stretch"
@@ -94,7 +96,13 @@
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         Visibility="Visible"
                       >
-                </GridView>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
             </Grid>
     </Grid>
 </Page>
