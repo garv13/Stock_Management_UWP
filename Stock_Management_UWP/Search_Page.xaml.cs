@@ -80,7 +80,7 @@ namespace Stock_Management_UWP
                 name = " ";
             if (source == "")
                 source = " ";
-
+            //todo make if for qual=all.. match and contain
 
             items = await Table.Where(ProductClass =>
             ProductClass.Name.Contains(name.ToUpper()) &&

@@ -29,7 +29,18 @@ namespace Stock_Management_UWP
         public Search_Detail_Page()
         {
             this.InitializeComponent();
+            
         }
-      
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ProductClass p = e.Parameter as ProductClass;
+            Product_Name_Box.Text = p.Name;
+            Product_Quantity_Box.Text = p.Quantity;
+            Product_Mat_Box.Text = p.Quality;
+             matBox.Text = p.Material;
+            Product_Source_Box.Text = p.Source;
+            Product_Color_Box.Text = p.Color;
+        }
+
     }
 }
