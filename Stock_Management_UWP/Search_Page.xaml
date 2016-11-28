@@ -20,7 +20,9 @@
                     <ColumnDefinition Width ="0.2*"/>
 
                 </Grid.ColumnDefinitions>
-
+                <Border Background="#253375" Grid.Column="0">
+                    <TextBlock Text="{Binding Id}" Visibility="Collapsed" FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                </Border>
                 <Border Background="#253375" Grid.Column="0">
                     <TextBlock Text="{Binding Quality}"  FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
                 </Border>
@@ -60,12 +62,13 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox
+             BorderBrush="#616161" BorderThickness="4" 
            LostFocus="Product_Name_Box_LostFocus"
             Margin="10,0,0,0" Header="Choose Material"  x:Name="matBox" Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
-        <ComboBox LostFocus="Product_Name_Box_LostFocus"  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+        <ComboBox BorderBrush="#616161" BorderThickness="4"  LostFocus="Product_Name_Box_LostFocus"  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
             <ComboBoxItem >I</ComboBoxItem>
             <ComboBoxItem >II</ComboBoxItem>
             <ComboBoxItem>Sup</ComboBoxItem>
@@ -80,7 +83,7 @@
 
         <TextBox LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
 
-        <TextBlock LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
+        <TextBlock TextAlignment="Center" LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" VerticalAlignment="Center" FontSize="30" Foreground="Black"/>
         <Button Click="Button_Click" Grid.Row="1" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Blue">
             <TextBlock Text=">" VerticalAlignment="Center" Foreground="White"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="80"/>
         </Button>
@@ -100,6 +103,7 @@
                         ScrollViewer.VerticalScrollMode="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         Visibility="Visible"
+                    ItemClick="event1_ItemClick"
                       >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

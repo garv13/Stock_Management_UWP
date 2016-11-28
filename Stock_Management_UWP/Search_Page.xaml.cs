@@ -44,14 +44,14 @@ namespace Stock_Management_UWP
 
             lol.Add("All");
             matBox.ItemsSource = lol;
-            matBox.SelectedIndex = 0;
+            matBox.SelectedIndex = lol.Count-1;
 
             items2 = await Table.Select(ProductClass => ProductClass.Color).ToCollectionAsync();
             lol = items2.Distinct().ToList<string>();
 
             lol.Add("All");
             matBox2.ItemsSource = lol;
-            matBox2.SelectedIndex = 0;
+            matBox2.SelectedIndex = lol.Count-1;
 
 
 
@@ -105,6 +105,11 @@ namespace Stock_Management_UWP
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             await loadTable();
+        }
+
+        private void event1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }
