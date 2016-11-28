@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,30 @@ namespace Stock_Management_UWP
     /// </summary>
     public sealed partial class Logs_Page : Page
     {
+        private static IMobileServiceTable<ProductClass> Table = App.MobileService.GetTable<ProductClass>();
+        public static MobileServiceCollection<ProductClass, ProductClass> items;
+
         public Logs_Page()
         {
             this.InitializeComponent();
+            Loaded += Logs_Page_Loaded;
+              
         }
+
+        private async void Logs_Page_Loaded(object sender, RoutedEventArgs e)
+        {
+//            items = await Table.ToCollectionAsync();
+//            foreach(ProductClass p in items)
+//            {
+//                p.Color = p.Color + " ";
+//                p.Material = p.Material + " ";
+//                p.Name = p.Name + " ";
+//                p.Source = p.Source + " ";
+//                p.Quality = p.Quality + " ";
+//                await Table.UpdateAsync(p);
+//;
+
+//            }
     }
+}
 }

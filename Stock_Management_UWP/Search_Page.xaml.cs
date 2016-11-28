@@ -64,27 +64,45 @@ namespace Stock_Management_UWP
         private async Task loadTable()
         {
             var Quality = comboBox.SelectedItem as ComboBoxItem;
-            string Qual = Quality.Content as string;
-            var material = matBox.SelectedItem as string;
-            var color = matBox2.SelectedItem as string;
-            
+            string Qual = Quality.Content as string +" ";
+            string material = matBox.SelectedItem as string;
+            string color = matBox2.SelectedItem as string;
+            string name = Product_Name_Box.Text;
+            string source = Product_Source_Box.Text;
+
+            if (Qual == "All ")
+            { Qual = " "; }
+            if (material == "All")
+            { material = " "; }
+            if (color == "All")
+            { color = " "; }
+            if (name == "")
+                name = " ";
+            if (source == "")
+                source = " ";
+
 
             items = await Table.Where(ProductClass =>
-            Product_Name_Box.Text != "" ? ProductClass.Name.Contains(Product_Name_Box.Text.ToUpper()) : true &&
-            ProductClass.Material==Qual && 
-            material!="All"?ProductClass.Material.Contains(material):true &&
-            color!= "All" ? ProductClass.Color.Contains(color) : true &&
-            Product_Source_Box.Text != "" ? ProductClass.Source.Contains(Product_Source_Box.Text.ToUpper()) : true).ToCollectionAsync();
+            ProductClass.Name.Contains(name.ToUpper()) &&
+            ProductClass.Quality==Qual && 
+            ProductClass.Material.Contains(material) &&
+            ProductClass.Color.Contains(color)  &&
+             ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
 
             event1.ItemsSource = items;
         }
 
         private async void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await loadTable();
+            
         }
 
         private async void Product_Name_Box_LostFocus(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             await loadTable();
         }

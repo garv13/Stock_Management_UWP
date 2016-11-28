@@ -55,6 +55,7 @@
             <ColumnDefinition Width ="0.2*"/>
             <ColumnDefinition Width ="0.2*"/>
             <ColumnDefinition Width ="0.2*"/>
+            <ColumnDefinition Width ="0.2*"/>
 
         </Grid.ColumnDefinitions>
 
@@ -65,9 +66,10 @@
 
         <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
         <ComboBox LostFocus="Product_Name_Box_LostFocus"  Margin="10,0,0,0" Header="Choose quality" x:Name="comboBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
-            <ComboBoxItem IsSelected="True">I</ComboBoxItem>
+            <ComboBoxItem >I</ComboBoxItem>
             <ComboBoxItem >II</ComboBoxItem>
             <ComboBoxItem>Sup</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">All</ComboBoxItem>
         </ComboBox>
 
         <!--<TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>-->
@@ -79,7 +81,9 @@
         <TextBox LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Header="Choose Source" x:Name="Product_Source_Box" Grid.Column="4" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Source of Product" TextAlignment="Justify"  Foreground="Black"/>
 
         <TextBlock LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" TextAlignment="Justify"  Foreground="Black"/>
-
+        <Button Click="Button_Click" Grid.Row="1" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Blue">
+            <TextBlock Text=">" VerticalAlignment="Center" Foreground="White"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="80"/>
+        </Button>
         <Grid Grid.Row="2" Grid.ColumnSpan="6">
                 <ListView   
                      HorizontalContentAlignment="Stretch"

@@ -75,17 +75,17 @@ namespace Stock_Management_UWP
             try
             {
                 ProductClass p = new ProductClass();
-                p.Name = Product_Name_Box.Text.ToUpper();
-                p.Color = Product_Color_Box.Text.ToUpper();
-                p.Quantity = Product_Quantity_Box.Text.ToUpper();
+                p.Name = Product_Name_Box.Text.ToUpper()+" ";
+                p.Color = Product_Color_Box.Text.ToUpper() + " ";
+                p.Quantity = Product_Quantity_Box.Text.ToUpper() + " ";
                 var Quality = comboBox.SelectedItem as ComboBoxItem;
-                p.Quality = Quality.Content as string;
+                p.Quality = Quality.Content as string + " ";
 
-                var material = matBox.SelectedItem as string;
-                string mat = material;
-                if (mat == "Other")
+                var material = matBox.SelectedItem as string ;
+                string mat = material + " ";
+                if (mat == "Other ")
                 {
-                    mat = Product_Mat_Box.Text.ToUpper();
+                    mat = Product_Mat_Box.Text.ToUpper() ;
                     if (lol.Contains(mat))
                     {
                         await (new MessageDialog("Material Already exists. Kindly select from drop down menu")).ShowAsync();
@@ -93,7 +93,7 @@ namespace Stock_Management_UWP
                 }
                 p.Material = mat;
                
-                p.Source = Product_Source_Box.Text.ToUpper();
+                p.Source = Product_Source_Box.Text.ToUpper() + " ";
 
                 await App.MobileService.GetTable<ProductClass>().InsertAsync(p);
                 Logs l = new Logs();
