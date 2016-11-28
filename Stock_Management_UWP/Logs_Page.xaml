@@ -7,7 +7,80 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="Standard3100x260ItemTemplate" ScrollViewer.VerticalScrollMode="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" >
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width ="0.2*"/>
+                    <ColumnDefinition Width ="0.2*"/>
+                    
+
+                </Grid.ColumnDefinitions>
+                <Border Background="#253375" Grid.Column="0">
+                    <TextBlock Text="{Binding DateTime}" FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                </Border>
+                <Border Background="#253375" Grid.Column="1">
+                    <TextBlock Text="{Binding Content}"  FontSize="20" Foreground="White" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                </Border>
+                
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="0.2*"/>
+            <ColumnDefinition Width ="0.2*"/>
+            
+         
+
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+             TextAlignment="Center"
+         
+            Margin="10,0,0,0" Text="Date"  x:Name="matBox" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Stretch" FontSize="30" VerticalAlignment="Center" >
+        </TextBlock>
+
+        <!--<TextBox x:Name="Product_Material_Box" Grid.Column="1" Grid.Row="1" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Name of Product" TextAlignment="Justify" Foreground="Black"/>-->
+        <TextBlock TextAlignment="Center"    Margin="10,0,0,0" Text="Content" FontSize="30" x:Name="comboBox" Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+          
+        </TextBlock>
+
+        <!--<TextBox x:Name="Product_Qual_Box" Grid.Column="1" Grid.Row="2" BorderBrush="#616161" BorderThickness="4" PlaceholderText="Enter Quantity of Product" TextAlignment="Justify"  Foreground="Black"/>-->
+
+
+       
+        <Grid Grid.Row="2" Grid.ColumnSpan="6">
+            <ListView   
+                     HorizontalContentAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        x:Name="event1"
+                        VerticalAlignment="Stretch"
+                        ItemsSource="{Binding}"
+                        ItemTemplate="{StaticResource Standard3100x260ItemTemplate}"
+                        SelectionMode="None"          
+                        IsSwipeEnabled="false"
+                        IsItemClickEnabled="False"
+                        ScrollViewer.HorizontalScrollMode="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollMode="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        Visibility="Visible"
+                    
+                      >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

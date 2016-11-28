@@ -23,30 +23,35 @@ namespace Stock_Management_UWP
     /// </summary>
     public sealed partial class Logs_Page : Page
     {
-        private static IMobileServiceTable<ProductClass> Table = App.MobileService.GetTable<ProductClass>();
-        public static MobileServiceCollection<ProductClass, ProductClass> items;
+        private static IMobileServiceTable<Logs> Table = App.MobileService.GetTable<Logs>();
+        private static MobileServiceCollection<Logs, Logs> items;
 
         public Logs_Page()
         {
             this.InitializeComponent();
             Loaded += Logs_Page_Loaded;
-              
+
         }
 
         private async void Logs_Page_Loaded(object sender, RoutedEventArgs e)
         {
-//            items = await Table.ToCollectionAsync();
-//            foreach(ProductClass p in items)
-//            {
-//                p.Color = p.Color + " ";
-//                p.Material = p.Material + " ";
-//                p.Name = p.Name + " ";
-//                p.Source = p.Source + " ";
-//                p.Quality = p.Quality + " ";
-//                await Table.UpdateAsync(p);
-//;
+            items = await Table.ToCollectionAsync();
+            event1.ItemsSource = items;
 
-//            }
+            //            items = await Table.ToCollectionAsync();
+            //            foreach(ProductClass p in items)
+            //            {
+            //                p.Color = p.Color + " ";
+            //                p.Material = p.Material + " ";
+            //                p.Name = p.Name + " ";
+            //                p.Source = p.Source + " ";
+            //                p.Quality = p.Quality + " ";
+            //                await Table.UpdateAsync(p);
+            //;
+
+            //            }
+        }
+
     }
-}
+        
 }
