@@ -109,7 +109,8 @@ namespace Stock_Management_UWP
 
         private void event1_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            ProductClass p = e.ClickedItem as ProductClass;
+            Frame.Navigate(typeof(Search_Detail_Page), p);
         }
     }
 }
