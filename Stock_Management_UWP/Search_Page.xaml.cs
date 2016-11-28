@@ -70,8 +70,7 @@ namespace Stock_Management_UWP
             string name = Product_Name_Box.Text;
             string source = Product_Source_Box.Text;
 
-            if (Qual == "All ")
-            { Qual = " "; }
+           
             if (material == "All")
             { material = " "; }
             if (color == "All")
@@ -82,22 +81,36 @@ namespace Stock_Management_UWP
                 source = " ";
             //todo make if for qual=all.. match and contain
 
-            items = await Table.Where(ProductClass =>
-            ProductClass.Name.Contains(name.ToUpper()) &&
-            ProductClass.Quality==Qual && 
-            ProductClass.Material.Contains(material) &&
-            ProductClass.Color.Contains(color)  &&
-             ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
 
+            if (Qual == "All ")
+            {
+                Qual = " ";
+
+                items = await Table.Where(ProductClass =>
+                ProductClass.Name.Contains(name.ToUpper()) &&
+                ProductClass.Quality.Contains(Qual) &&
+                ProductClass.Material.Contains(material) &&
+                ProductClass.Color.Contains(color) &&
+                 ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+            }
+            else
+            {
+                items = await Table.Where(ProductClass =>
+                ProductClass.Name.Contains(name.ToUpper()) &&
+                ProductClass.Quality == Qual &&
+                ProductClass.Material.Contains(material) &&
+                ProductClass.Color.Contains(color) &&
+                ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+            }
             event1.ItemsSource = items;
         }
 
-        private async void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private  void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
         }
 
-        private async void Product_Name_Box_LostFocus(object sender, RoutedEventArgs e)
+        private  void Product_Name_Box_LostFocus(object sender, RoutedEventArgs e)
         {
           
         }
