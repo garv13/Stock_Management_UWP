@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,23 +37,35 @@ namespace Stock_Management_UWP
 
         private async void Search_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            List<string> lol = new List<string>();
-            items = await Table.ToCollectionAsync();
-            event1.ItemsSource = items;
-            items2 = await Table.Select(ProductClass => ProductClass.Material).ToCollectionAsync();
-            lol = items2.Distinct().ToList<string>();
+            try
+            {
+                LoadingBar.Visibility = Visibility.Visible;
+                LoadingBar.IsIndeterminate = true;
 
-            lol.Add("All");
-            matBox.ItemsSource = lol;
-            matBox.SelectedIndex = lol.Count-1;
+                List<string> lol = new List<string>();
+                items = await Table.ToCollectionAsync();
+                event1.ItemsSource = items;
+                items2 = await Table.Select(ProductClass => ProductClass.Material).ToCollectionAsync();
+                lol = items2.Distinct().ToList<string>();
 
-            items2 = await Table.Select(ProductClass => ProductClass.Color).ToCollectionAsync();
-            lol = items2.Distinct().ToList<string>();
+                lol.Add("All");
+                matBox.ItemsSource = lol;
+                matBox.SelectedIndex = lol.Count - 1;
 
-            lol.Add("All");
-            matBox2.ItemsSource = lol;
-            matBox2.SelectedIndex = lol.Count-1;
+                items2 = await Table.Select(ProductClass => ProductClass.Color).ToCollectionAsync();
+                lol = items2.Distinct().ToList<string>();
 
+                lol.Add("All");
+                matBox2.ItemsSource = lol;
+                LoadingBar.Visibility = Visibility.Collapsed;
+                matBox2.SelectedIndex = lol.Count - 1;
+            }
+            catch(Exception)
+            {
+                LoadingBar.Visibility = Visibility.Collapsed;
+                MessageDialog msgbox = new MessageDialog("Can't Load Now");
+                await msgbox.ShowAsync();
+            }
 
 
         }
@@ -63,6 +76,9 @@ namespace Stock_Management_UWP
         }
         private async Task loadTable()
         {
+            LoadingBar.Visibility = Visibility.Visible;
+            LoadingBar.IsIndeterminate = true;
+
             var Quality = comboBox.SelectedItem as ComboBoxItem;
             string Qual = Quality.Content as string +" ";
             string material = matBox.SelectedItem as string;
@@ -81,28 +97,40 @@ namespace Stock_Management_UWP
                 source = " ";
             //todo make if for qual=all.. match and contain
 
-
-            if (Qual == "All ")
+            try
             {
-                Qual = " ";
 
-                items = await Table.Where(ProductClass =>
-                ProductClass.Name.Contains(name.ToUpper()) &&
-                ProductClass.Quality.Contains(Qual) &&
-                ProductClass.Material.Contains(material) &&
-                ProductClass.Color.Contains(color) &&
-                 ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+
+
+                if (Qual == "All ")
+                {
+                    Qual = " ";
+
+                    items = await Table.Where(ProductClass =>
+                    ProductClass.Name.Contains(name.ToUpper()) &&
+                    ProductClass.Quality.Contains(Qual) &&
+                    ProductClass.Material.Contains(material) &&
+                    ProductClass.Color.Contains(color) &&
+                     ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+                }
+                else
+                {
+                    items = await Table.Where(ProductClass =>
+                    ProductClass.Name.Contains(name.ToUpper()) &&
+                    ProductClass.Quality == Qual &&
+                    ProductClass.Material.Contains(material) &&
+                    ProductClass.Color.Contains(color) &&
+                    ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+                }
+                LoadingBar.Visibility = Visibility.Collapsed;
+                event1.ItemsSource = items;
             }
-            else
+            catch(Exception)
             {
-                items = await Table.Where(ProductClass =>
-                ProductClass.Name.Contains(name.ToUpper()) &&
-                ProductClass.Quality == Qual &&
-                ProductClass.Material.Contains(material) &&
-                ProductClass.Color.Contains(color) &&
-                ProductClass.Source.Contains(source.ToUpper())).ToCollectionAsync();
+                LoadingBar.Visibility = Visibility.Collapsed;
+                MessageDialog msgbox = new MessageDialog("Can't Load Now");
+                await msgbox.ShowAsync();
             }
-            event1.ItemsSource = items;
         }
 
         private  void matBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

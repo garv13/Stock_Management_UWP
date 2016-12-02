@@ -42,8 +42,20 @@ namespace Stock_Management_UWP
 
         private async void Search_Detail_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            items = await Table.Where(Logs => Logs.ProductId == p.Id).ToCollectionAsync();
-            event1.ItemsSource = items;
+            LoadingBar.Visibility = Visibility.Visible;
+            LoadingBar.IsIndeterminate = true;
+            try
+            {
+                items = await Table.Where(Logs => Logs.ProductId == p.Id).ToCollectionAsync();
+                LoadingBar.Visibility = Visibility.Collapsed;
+                event1.ItemsSource = items;
+            }
+            catch(Exception)
+            {
+                LoadingBar.Visibility = Visibility.Collapsed;
+                MessageDialog msgbox = new MessageDialog("Can't Update Now");
+                await msgbox.ShowAsync();
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -62,55 +74,86 @@ namespace Stock_Management_UWP
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //add stock button
-            int a = int.Parse(p.Quantity);
-            int b;
-            if (int.TryParse(Number_bags.Text, out b))
+
+            LoadingBar.Visibility = Visibility.Visible;
+            LoadingBar.IsIndeterminate = true;
+            try
             {
-                p.Quantity = (a + b).ToString();
-                await Table2.UpdateAsync(p);
-                Logs l = new Logs();
-                l.ProductId = p.Id;
-                l.Content = "Added " + b.ToString() + " Bags of " + p.Name;
-                Logs.createLog(l);
-                MessageDialog mess = new MessageDialog("Stock Added", "Stock Updated");
-                await mess.ShowAsync();
+                int a = int.Parse(p.Quantity);
+                int b;
+
+                if (int.TryParse(Number_bags.Text, out b))
+                {
+                    p.Quantity = (a + b).ToString();
+                    await Table2.UpdateAsync(p);
+                    Logs l = new Logs();
+                    l.ProductId = p.Id;
+                    l.Content = "Added " + b.ToString() + " Bags of " + p.Name;
+                    Logs.createLog(l);
+                    LoadingBar.Visibility = Visibility.Collapsed;
+                    MessageDialog mess = new MessageDialog("Stock Added", "Stock Updated");
+                    await mess.ShowAsync();
+                }
+                else
+                {
+                    LoadingBar.Visibility = Visibility.Collapsed;
+                    MessageDialog mess = new MessageDialog("Please enter a valid number", "Bad input");
+                    await mess.ShowAsync();
+                }
             }
-            else
+            catch(Exception)
             {
-                MessageDialog mess = new MessageDialog("Please enter a valid number", "Bad input");
-                await mess.ShowAsync();
+                LoadingBar.Visibility = Visibility.Collapsed;
+                MessageDialog msgbox = new MessageDialog("Can't Update Now");
+                await msgbox.ShowAsync();
             }
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //subtract stock button
-            int a = int.Parse(p.Quantity);
-            int b;
-            if (int.TryParse(Number_bags.Text, out b))
+            LoadingBar.Visibility = Visibility.Visible;
+            LoadingBar.IsIndeterminate = true;
+            try
             {
-                if (a - b > 0)
+
+
+                int a = int.Parse(p.Quantity);
+                int b;
+
+                if (int.TryParse(Number_bags.Text, out b))
                 {
-                    p.Quantity = (a - b).ToString();
-                    await Table2.UpdateAsync(p);
-                    Logs l = new Logs();
-                    l.ProductId = p.Id;
-                    l.Content = "Subtracted " + b.ToString() + " Bags of " + p.Name;
-                    Logs.createLog(l);
-                    MessageDialog mess = new MessageDialog("Stock subtracted", "Stock Updated");
-                    await mess.ShowAsync();
+                    if (a - b > 0)
+                    {
+                        p.Quantity = (a - b).ToString();
+                        await Table2.UpdateAsync(p);
+                        Logs l = new Logs();
+                        l.ProductId = p.Id;
+                        l.Content = "Subtracted " + b.ToString() + " Bags of " + p.Name;
+                        Logs.createLog(l);
+                        MessageDialog mess = new MessageDialog("Stock subtracted", "Stock Updated");
+                        await mess.ShowAsync();
+                    }
+                    else
+                    {
+                        LoadingBar.Visibility = Visibility.Collapsed;
+                        MessageDialog mess = new MessageDialog("Entered Value exceeds stock", "Bad input");
+                        await mess.ShowAsync();
+
+                    }
                 }
                 else
                 {
-                    MessageDialog mess = new MessageDialog("Entered Value exceeds stock", "Bad input");
+                    LoadingBar.Visibility = Visibility.Collapsed;
+                    MessageDialog mess = new MessageDialog("Please enter a valid number", "Bad input");
                     await mess.ShowAsync();
-
                 }
             }
-            else
+            catch(Exception)
             {
-                MessageDialog mess = new MessageDialog("Please enter a valid number", "Bad input");
-                await mess.ShowAsync();
+                LoadingBar.Visibility = Visibility.Collapsed;
+                MessageDialog msgbox = new MessageDialog("Can't Update Now");
+                await msgbox.ShowAsync();
             }
         }
     }

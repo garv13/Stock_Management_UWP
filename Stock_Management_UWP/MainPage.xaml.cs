@@ -23,16 +23,9 @@ namespace Stock_Management_UWP
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        {
-            
-            
-           
-           
-            this.InitializeComponent();
-           
+        {           
+            this.InitializeComponent();  
         }
-
-       
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
