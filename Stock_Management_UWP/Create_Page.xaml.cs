@@ -42,11 +42,18 @@ namespace Stock_Management_UWP
 
         private async void Create_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            items = await Table.Select(ProductClass => ProductClass.Material).ToCollectionAsync();
-            lol = items.Distinct().ToList<string>();
-            
-            lol.Add("Other");
-            matBox.ItemsSource = lol;
+            try
+            {
+                items = await Table.Select(ProductClass => ProductClass.Material).ToCollectionAsync();
+                lol = items.Distinct().ToList<string>();
+
+                lol.Add("Other");
+                matBox.ItemsSource = lol;
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         private async void Add_Button_Click(object sender, RoutedEventArgs e)
@@ -95,14 +102,12 @@ namespace Stock_Management_UWP
                
                 p.Source = Product_Source_Box.Text.ToUpper() + " ";
 
-                await App.MobileService.GetTable<ProductClass>().InsertAsync(p);
-                Logs l = new Logs();
-                l.ProductId = p.Id;
-               
-                l.Content = "Added new product " + p.Name + ". " + p.Quantity + " Bags";
-                Logs.createLog(l);
-                
-               
+                    await App.MobileService.GetTable<ProductClass>().InsertAsync(p);
+                    Logs l = new Logs();
+                    l.ProductId = p.Id;
+
+                    l.Content = "Added new product " + p.Name + ". " + p.Quantity + " Bags";
+                    Logs.createLog(l);               
 
                 await (new MessageDialog("Record Added")).ShowAsync();
             }

@@ -44,7 +44,7 @@
             </Grid>
         </DataTemplate> 
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Wheat">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.1*"/>
@@ -60,6 +60,8 @@
             <ColumnDefinition Width ="0.2*"/>
 
         </Grid.ColumnDefinitions>
+
+        <ProgressBar x:Name="LoadingBar" Grid.RowSpan="3" Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed"/>
 
         <ComboBox
              BorderBrush="#616161" BorderThickness="4" 
@@ -85,9 +87,9 @@
 
         <TextBlock TextAlignment="Center" LostFocus="Product_Name_Box_LostFocus" Margin="10,0,0,0" Grid.Column="5" Grid.Row="1" Text="Quantity" VerticalAlignment="Center" FontSize="30" Foreground="Black"/>
         <Button Click="Button_Click" Grid.Row="1" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Blue">
-            <TextBlock Text=">" VerticalAlignment="Center" Foreground="White"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="80"/>
+            <TextBlock Text="Search  >" VerticalAlignment="Center" Foreground="White"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="30"/>
         </Button>
-        <Grid Grid.Row="2" Grid.ColumnSpan="6">
+        <Grid Grid.Row="2" Grid.ColumnSpan="7" Margin="161,5,21,-5">
                 <ListView   
                      HorizontalContentAlignment="Stretch"
                         HorizontalAlignment="Stretch"
