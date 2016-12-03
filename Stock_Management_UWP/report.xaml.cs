@@ -35,6 +35,7 @@ namespace Stock_Management_UWP
 
         private async void button_Click(object sender, RoutedEventArgs e)
         {
+
             string content = "";
             List<Logs> l = new List<Logs>();
             List<ProductClass> pro = new List<ProductClass>();
