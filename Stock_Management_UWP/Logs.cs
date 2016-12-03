@@ -13,13 +13,13 @@ namespace Stock_Management_UWP
         public static List<Logs> log = new List<Logs>();
         public string Id { get; set; }
         public string ProductId { get; set; }
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public string Content { get; set; }
 
         public static void createLog(Logs a)
         {
             a= crypt.encryptLog(a);
-            a.DateTime = System.DateTime.Now.ToString();
+            a.DateTime = System.DateTime.Now;
             App.MobileService.GetTable<Logs>().InsertAsync(a);
 
         }

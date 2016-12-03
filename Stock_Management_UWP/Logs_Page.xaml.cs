@@ -37,6 +37,7 @@ namespace Stock_Management_UWP
         {
             items = await Table.ToCollectionAsync();
             event1.ItemsSource = items;
+            
 
             //            items = await Table.ToCollectionAsync();
             //            foreach(ProductClass p in items)
