@@ -12,5 +12,8 @@ namespace Stock_Management_UWP
 
         public string md5 { get; set; }
 
+        public string md5reverse { get; set; }
+
+
     }
 }
