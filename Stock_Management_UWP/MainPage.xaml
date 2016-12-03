@@ -19,6 +19,8 @@
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="0.05*"/>
             </Grid.RowDefinitions>
@@ -34,7 +36,11 @@
             <TextBlock TextAlignment="Center" Foreground="Black" TextWrapping="WrapWholeWords" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="Inventory Management" FontSize="24" FontFamily="Yu Gothic UI" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" />
             <Button x:Name="Create_Button" Content="Create New entry" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" BorderThickness="4,0,0,0" Grid.Row="3" Grid.Column="1" Click="Create_Button_Click"/>
             <Button x:Name="Search_Button" Content="Update/Search" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" BorderThickness="0,4,4,0" Grid.Row="4" Grid.Column="1" Click="Search_Button_Click"/>
+           
             <Button x:Name="Logs_Button" Content="Logs" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" BorderThickness="4,4,0,0" Grid.Row="5" Grid.Column="1" Click="Logs_Button_Click"/>
+            <Button x:Name="Report_Button" Content="Generate Report" Foreground="White" Background="#616161" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" BorderThickness="0,4,4,4" Grid.Row="6" Grid.Column="1" Click="Report_Button_Click"/>
+
         </Grid>
+        
     </Grid>
 </Page>

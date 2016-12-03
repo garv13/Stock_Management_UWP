@@ -35,6 +35,8 @@ namespace Stock_Management_UWP
 
         private async void Logs_Page_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            { 
             items = await Table.ToCollectionAsync();
             event1.ItemsSource = items;
 

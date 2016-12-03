@@ -41,5 +41,10 @@ namespace Stock_Management_UWP
         {
             Frame.Navigate(typeof(Logs_Page));
         }
+
+        private void Report_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(report));
+        }
     }
 }

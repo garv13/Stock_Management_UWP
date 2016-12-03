@@ -88,7 +88,7 @@ namespace Stock_Management_UWP
                     await Table2.UpdateAsync(p);
                     Logs l = new Logs();
                     l.ProductId = p.Id;
-                    l.Content = "Added " + b.ToString() + " Bags of " + p.Name;
+                    l.Content = "Added " + b.ToString() + " Bags of " + p.Material + " " + p.Quality + " " + p.Color + " " + p.Name + " " + p.Source;
                     Logs.createLog(l);
                     LoadingBar.Visibility = Visibility.Collapsed;
                     MessageDialog mess = new MessageDialog("Stock Added", "Stock Updated");
@@ -129,7 +129,7 @@ namespace Stock_Management_UWP
                         await Table2.UpdateAsync(p);
                         Logs l = new Logs();
                         l.ProductId = p.Id;
-                        l.Content = "Subtracted " + b.ToString() + " Bags of " + p.Name;
+                        l.Content = "Subtracted " + b.ToString() + " Bags of " + p.Material+" "+ p.Quality + " " + p.Color + " " + p.Name + " "+p.Source;
                         Logs.createLog(l);
                         MessageDialog mess = new MessageDialog("Stock subtracted", "Stock Updated");
                         await mess.ShowAsync();
