@@ -1,3 +1,4 @@
 1) create Signup Page (Make sure password is md5 see sign in page for detail)
 2) link sign in page
 3)test the app
+4) write the report in csv file
