@@ -105,7 +105,6 @@ namespace Stock_Management_UWP
                     await App.MobileService.GetTable<ProductClass>().InsertAsync(p);
                     Logs l = new Logs();
                     l.ProductId = p.Id;
-
                     l.Content = "Added new product " + p.Name + ". " + p.Quantity + " Bags";
                     Logs.createLog(l);               
 
