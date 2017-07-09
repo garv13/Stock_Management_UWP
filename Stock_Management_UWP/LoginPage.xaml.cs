@@ -45,6 +45,7 @@ namespace Stock_Management_UWP
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+           // await UserEntry(UserName.Text, Password.Password); // function to add user
             await lol();
         }
         private async Task lol()
@@ -94,6 +95,21 @@ namespace Stock_Management_UWP
             var hashed = alg.HashData(buff);
             string res = CryptographicBuffer.EncodeToHexString(hashed);
             return res;
+        }
+
+
+        private static async Task UserEntry(string name,string password)
+        {
+            string md5 = ComputeMD5(password);
+            char[] arr = password.ToCharArray();
+            Array.Reverse(arr);
+            string reversepass = new string(arr);
+            string reversemd5 = ComputeMD5(reversepass);
+            User a = new User();
+            a.username = name;
+            a.md5 = md5;
+            a.md5reverse = reversemd5;
+            await App.MobileService.GetTable<User>().InsertAsync(a);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Stock_Management_UWP
 {
     class User
     {
+
+        public string Id { get; set; }
         public string username { get; set; }
 
         public string md5 { get; set; }
