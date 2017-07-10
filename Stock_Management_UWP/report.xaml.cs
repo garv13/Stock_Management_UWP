@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -49,9 +52,9 @@ namespace Stock_Management_UWP
             try {
                 while (true)
                 {
-                    items = await Table.Where(Logs => Logs.DateTime >= start && Logs.DateTime<= end && !Logs.Content.Contains("new")).OrderByDescending(Logs=> Logs.ProductId).Skip(i*50).Take(50).ToCollectionAsync();
+                    items = await Table.Where(Logs => Logs.DateTime >= start && Logs.DateTime <= end && !Logs.Content.Contains("new")).OrderByDescending(Logs => Logs.ProductId).Skip(i * 50).Take(50).ToCollectionAsync();
                     items3 = await Table.Where(Logs => Logs.DateTime >= start && Logs.DateTime <= end && !Logs.Content.Contains("new")).Select(Logs => Logs.ProductId).Skip(i * 50).Take(50).ToCollectionAsync();
-                    
+
                     i++;
                     foreach (Logs t in items)
                     {
@@ -76,7 +79,7 @@ namespace Stock_Management_UWP
                 return;
             }
             ProductClass p = new ProductClass();
-            string[,] con = new string[ids.Count, end.DayOfYear - start.DayOfYear+3];
+            string[,] con = new string[ids.Count, end.DayOfYear - start.DayOfYear + 3];
             for (i = 0; i < ids.Count; i++)
             {
                 for (int j = 0; j < end.DayOfYear - start.DayOfYear + 2; j++)
@@ -107,7 +110,7 @@ namespace Stock_Management_UWP
 
 
                 }
-                  
+
 
             }
             content = "Material";
@@ -186,15 +189,19 @@ namespace Stock_Management_UWP
                         content += "\n";
                     }
 
-                }
+                }                                 
                 catch (Exception)
                 { }
+
             }
+            await OnFileSave(content);
 
-                //we got all the logs for the dates and ids of products
+        }
 
-                //content = "Material";
-                DateTime d = new DateTime();
+        //we got all the logs for the dates and ids of products
+
+        //content = "Material";
+        DateTime d = new DateTime();
             //for (i =0; i <= end.DayOfYear-start.DayOfYear; i++)
             //{
             //    content += "," + start.AddDays(i).Date.ToString().Split(' ')[0];
@@ -294,6 +301,19 @@ namespace Stock_Management_UWP
             //}
 
             //TODO: garv write content to a csv file
+
+        private async Task OnFileSave(string data)
+        {
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile = await storageFolder.CreateFileAsync("sample.csv", CreationCollisionOption.ReplaceExisting);
+            if (sampleFile != null)
+            {
+                await Task.Run(() =>
+                {
+                    Task.Yield();
+                    File.WriteAllText(sampleFile.Path, data);
+                });
+            }
         }
     }
 }
