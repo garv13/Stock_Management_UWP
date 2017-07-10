@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,7 +39,6 @@ namespace Stock_Management_UWP
            keys.url,new AppKeyHandler()
         );
 
-
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -52,29 +52,37 @@ namespace Stock_Management_UWP
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+
             Frame rootFrame = Window.Current.Content as Frame;
 
-
-           //Back Button  //  Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-            
-            
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
             if (rootFrame == null)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.Navigated += OnNavigated;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
 
-                // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    rootFrame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+
 
             if (e.PrelaunchActivated == false)
             {
@@ -90,9 +98,18 @@ namespace Stock_Management_UWP
             }
         }
 
+                //Back Button  //  Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
 
-        // Back Button
-        private void App_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+            private void OnNavigated(object sender, NavigationEventArgs e)
+            {
+                // Each time a navigation event occurs, update the Back button's visibility
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    ((Frame)sender).CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+            }
+            // Back Button
+            private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
