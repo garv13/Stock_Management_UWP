@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -300,19 +301,44 @@ namespace Stock_Management_UWP
 
             //}
 
-            //TODO: garv write content to a csv file
 
         private async Task OnFileSave(string data)
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.CreateFileAsync("sample.csv", CreationCollisionOption.ReplaceExisting);
-            if (sampleFile != null)
+            try
             {
-                await Task.Run(() =>
+
+
+                var savePicker = new FileSavePicker();
+                savePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                savePicker.FileTypeChoices.Add("Csv File", new List<string>() { ".csv" });
+                savePicker.SuggestedFileName = "New Logs";
+                StorageFile file = await savePicker.PickSaveFileAsync();
+
+                if (file != null)
                 {
-                    Task.Yield();
-                    File.WriteAllText(sampleFile.Path, data);
-                });
+
+                    CachedFileManager.DeferUpdates(file);
+                    await FileIO.WriteTextAsync(file, data);
+
+                    Windows.Storage.Provider.FileUpdateStatus status = await CachedFileManager.CompleteUpdatesAsync(file);
+
+                    if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
+                    {
+                        var dialog = new MessageDialog("File Saved :):)");
+                        await dialog.ShowAsync();
+                    }
+
+                    else
+                    {
+                        var dialog = new MessageDialog("File Not Saved :(:(");
+                        await dialog.ShowAsync();
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                var dialog = new MessageDialog("Exception" + e.Message);
+                await dialog.ShowAsync();
             }
         }
     }

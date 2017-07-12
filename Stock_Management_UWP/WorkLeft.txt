@@ -1,5 +1,10 @@
 1) create Signup Page (Make sure password is md5 see sign in page for detail) // no needed
 2) link sign in page // done
-3)test the app
-4) write the report in csv file // done
+3)test the app // done 
+4) write the report in csv file // done using file picker
 50 add back button // added
+
+Bugs 
+	                        bina koi filter ki value dale search button dabao to sirf 2 result aate hai baki udh jate ahi
+							aaj ki date me 2 entry kari magar log file me write nhi hui                        
+							 agar report me kal ki date mila du tab aa rhi hai
